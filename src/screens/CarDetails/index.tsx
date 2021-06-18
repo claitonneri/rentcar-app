@@ -1,8 +1,11 @@
 import React from 'react';
 
 import Acessory from '../../components/Acessory';
+import Button from '../../components/Button';
 import BackButton from '../../components/BackButton';
 import ImageSlider from '../../components/ImageSlider';
+
+import theme from '../../styles/theme';
 
 import SpeedSvg from '../../assets/speed.svg';
 import AccelerationSvg from '../../assets/acceleration.svg';
@@ -25,13 +28,18 @@ import {
   Price,
   Acessories,
   About,
+  Footer,
 } from './styles';
 
 const CarDetails: React.FC = () => {
   return (
     <Container>
       <Header>
-        <BackButton onPress={() => {}} />
+        <BackButton
+          onPress={() => {
+            console.log('Press');
+          }}
+        />
       </Header>
 
       <CarImages>
@@ -58,11 +66,11 @@ const CarDetails: React.FC = () => {
 
         <Acessories>
           <Acessory name="380km/h" icon={SpeedSvg} />
-          <Acessory name="380km/h" icon={AccelerationSvg} />
-          <Acessory name="380km/h" icon={ForceSvg} />
-          <Acessory name="380km/h" icon={GasolineSvg} />
-          <Acessory name="380km/h" icon={ExchangeSvg} />
-          <Acessory name="380km/h" icon={PeopleSvg} />
+          <Acessory name="3.2s" icon={AccelerationSvg} />
+          <Acessory name="800 HP" icon={ForceSvg} />
+          <Acessory name="Gasolina" icon={GasolineSvg} />
+          <Acessory name="Auto" icon={ExchangeSvg} />
+          <Acessory name="2 pessoas" icon={PeopleSvg} />
         </Acessories>
 
         <About>
@@ -71,6 +79,10 @@ const CarDetails: React.FC = () => {
           para quem gosta de acelerar.
         </About>
       </Content>
+
+      <Footer>
+        <Button title="Confirmar" color={theme.colors.main} />
+      </Footer>
     </Container>
   );
 };
