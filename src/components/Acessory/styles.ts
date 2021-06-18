@@ -20,7 +20,7 @@ export const Name = styled.Text`
   ${({ theme }) => css`
     font-family: ${theme.fonts.primary_500};
     color: ${theme.colors.text};
-    font-size: ${RFValue(13)}px;
+    font-size: ${RFValue(12)}px;
 
     margin-top: 8px;
   `}
