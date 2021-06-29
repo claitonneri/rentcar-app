@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigation } from '@react-navigation/native';
 
 import Acessory from '../../components/Acessory';
 import Button from '../../components/Button';
@@ -32,12 +33,14 @@ import {
 } from './styles';
 
 const CarDetails: React.FC = () => {
+  const navigation = useNavigation();
+
   return (
     <Container>
       <Header>
         <BackButton
           onPress={() => {
-            console.log('Press');
+            console.log('');
           }}
         />
       </Header>
@@ -81,7 +84,11 @@ const CarDetails: React.FC = () => {
       </Content>
 
       <Footer>
-        <Button title="Confirmar" color={theme.colors.main} />
+        <Button
+          title="Escolher período do aluguel"
+          color={theme.colors.main}
+          onPress={() => navigation.navigate('Scheduling')}
+        />
       </Footer>
     </Container>
   );
