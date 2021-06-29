@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { RectButtonProps } from 'react-native-gesture-handler';
 import {
   Container,
   Details,
@@ -15,7 +15,7 @@ import {
 
 import GasolineSvg from '../../assets/gasoline.svg';
 
-interface CardCarProps {
+interface CardCarProps extends RectButtonProps {
   data: {
     brand: string;
     name: string;
@@ -27,9 +27,9 @@ interface CardCarProps {
   };
 }
 
-const CardCar: React.FC<CardCarProps> = ({ data }) => {
+const CardCar: React.FC<CardCarProps> = ({ data, ...props }) => {
   return (
-    <Container>
+    <Container {...props}>
       <Details>
         <Brand>{data.brand}</Brand>
         <Name>{data.name}</Name>
