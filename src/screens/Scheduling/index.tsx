@@ -2,6 +2,7 @@ import React from 'react';
 import { StatusBar } from 'react-native';
 import { useTheme } from 'styled-components';
 
+import { useNavigation } from '@react-navigation/native';
 import Button from '../../components/Button';
 import Calendar from '../../components/Calendar';
 import BackButton from '../../components/BackButton';
@@ -22,6 +23,7 @@ import {
 
 const Scheduling: React.FC = () => {
   const theme = useTheme();
+  const navigation = useNavigation();
 
   return (
     <Container>
@@ -57,7 +59,10 @@ const Scheduling: React.FC = () => {
       </Content>
 
       <Footer>
-        <Button title="Confirmar" />
+        <Button
+          title="Confirmar"
+          onPress={() => navigation.navigate('SchedulingDetails')}
+        />
       </Footer>
     </Container>
   );
