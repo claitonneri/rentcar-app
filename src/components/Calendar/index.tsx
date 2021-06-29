@@ -45,7 +45,7 @@ LocaleConfig.locales['pt-br'] = {
     'Sexta-feira',
     'Sábado',
   ],
-  dayNamesShort: ['Dom.', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
+  dayNamesShort: ['DOM', 'SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SÁB'],
   today: 'Hoje',
 };
 LocaleConfig.defaultLocale = 'pt-br';
@@ -73,8 +73,13 @@ const Calendar: React.FC = () => {
         textDayFontFamily: theme.fonts.primary_400,
         textDayHeaderFontFamily: theme.fonts.primary_500,
         textDayHeaderFontSize: 10,
+        textMonthFontFamily: theme.fonts.secondary_600,
+        textMonthFontSize: 20,
+        monthTextColor: theme.colors.title,
         arrowStyle: { marginHorizontal: -15 },
       }}
+      firstDay={1}
+      minDate={new Date()}
     />
   );
 };
