@@ -13,21 +13,16 @@ import {
   CarImage,
 } from './styles';
 
-import GasolineSvg from '../../assets/gasoline.svg';
+import CarDTO from '../../dtos/CarDTO';
+import getAccessoryIcon from '../../utils/getAccessoryIcon';
 
 interface CardCarProps extends RectButtonProps {
-  data: {
-    brand: string;
-    name: string;
-    rent: {
-      period: string;
-      price: number;
-    };
-    thumbnail: string;
-  };
+  data: CarDTO;
 }
 
 const CardCar: React.FC<CardCarProps> = ({ data, ...props }) => {
+  const MotorIcon = getAccessoryIcon(data.fuel_type);
+
   return (
     <Container {...props}>
       <Details>
@@ -41,7 +36,7 @@ const CardCar: React.FC<CardCarProps> = ({ data, ...props }) => {
           </Rent>
 
           <Type>
-            <GasolineSvg />
+            <MotorIcon />
           </Type>
         </About>
       </Details>
