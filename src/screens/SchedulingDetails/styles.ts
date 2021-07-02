@@ -85,7 +85,7 @@ export const Price = styled.Text`
   `}
 `;
 
-export const Acessories = styled.View`
+export const Accessories = styled.View`
   width: 100%;
   flex-direction: row;
   flex-wrap: wrap;
@@ -110,7 +110,7 @@ export const About = styled.Text`
 export const Footer = styled.View`
   ${({ theme }) => css`
     width: 100%;
-    height: ${RFValue(110)}px;
+    height: ${RFValue(getBottomSpace() + 100)}px;
 
     background-color: ${theme.colors.background_primary};
     justify-content: center;
