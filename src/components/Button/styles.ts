@@ -4,10 +4,12 @@ import { RFValue } from 'react-native-responsive-fontsize';
 
 interface ButtonProps extends RectButtonProps {
   color?: string;
+  enabled?: boolean;
+  loading?: boolean;
 }
 
 export const Container = styled(RectButton)<ButtonProps>`
-  ${({ theme, color }) => css`
+  ${({ theme, color, enabled, loading }) => css`
     width: 100%;
 
     padding: 20px;
@@ -17,6 +19,8 @@ export const Container = styled(RectButton)<ButtonProps>`
     background-color: ${color || theme.colors.main};
 
     border-radius: 4px;
+
+    opacity: ${enabled === false || loading === true ? 0.5 : 1};
   `}
 `;
 
