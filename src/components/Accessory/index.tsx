@@ -3,12 +3,12 @@ import { SvgProps } from 'react-native-svg';
 
 import { Container, Name } from './styles';
 
-interface AcessoryProps {
+interface AccessoryProps {
   name: string;
   icon: React.FC<SvgProps>;
 }
 
-const Acessory: React.FC<AcessoryProps> = ({ name, icon: Icon }) => {
+const Accessory: React.FC<AccessoryProps> = ({ name, icon: Icon }) => {
   return (
     <Container>
       <Icon width={32} height={32} />
@@ -17,4 +17,4 @@ const Acessory: React.FC<AcessoryProps> = ({ name, icon: Icon }) => {
   );
 };
 
-export default Acessory;
+export default Accessory;
