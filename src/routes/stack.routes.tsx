@@ -2,17 +2,19 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import Home from '../screens/Home';
+import Splash from '../screens/Splash';
 import CarDetails from '../screens/CarDetails';
 import Scheduling from '../screens/Scheduling';
+import SchedulesList from '../screens/SchedulesList';
 import SchedulingDetails from '../screens/SchedulingDetails';
 import SchedulingComplete from '../screens/SchedulingComplete';
-import SchedulesList from '../screens/SchedulesList';
 
 const { Navigator, Screen } = createStackNavigator();
 
 const StackRoutes: React.FC = () => {
   return (
-    <Navigator headerMode="none">
+    <Navigator headerMode="none" initialRouteName="Splash">
+      <Screen name="Splash" component={Splash} />
       <Screen name="Home" component={Home} />
       <Screen name="CarDetails" component={CarDetails} />
       <Screen name="Scheduling" component={Scheduling} />
