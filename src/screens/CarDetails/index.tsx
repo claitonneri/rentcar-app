@@ -1,6 +1,13 @@
 import React from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { StatusBar } from 'react-native';
+import Animated, {
+  Extrapolate,
+  interpolate,
+  useAnimatedScrollHandler,
+  useAnimatedStyle,
+  useSharedValue,
+} from 'react-native-reanimated';
 
 import Accessory from '../../components/Accessory';
 import Button from '../../components/Button';
@@ -16,7 +23,6 @@ import {
   Container,
   Header,
   CarImages,
-  Content,
   Details,
   Description,
   Brand,
@@ -35,8 +41,24 @@ interface CarDetailsProps {
 
 const CarDetails: React.FC = () => {
   const route = useRoute();
+  const scrollY = useSharedValue(0);
   const navigation = useNavigation();
   const { car } = route.params as CarDetailsProps;
+
+  const headerStyle = useAnimatedStyle(() => {
+    return {
+      height: interpolate(
+        scrollY.value,
+        [0, 200],
+        [200, 70],
+        Extrapolate.CLAMP,
+      ),
+    };
+  });
+
+  const scrollYHandler = useAnimatedScrollHandler(event => {
+    scrollY.value = event.contentOffset.y;
+  });
 
   const handleConfirmRental = () => {
     navigation.navigate('Scheduling', { car });
@@ -49,15 +71,24 @@ const CarDetails: React.FC = () => {
         backgroundColor="transparent"
         translucent
       />
-      <Header>
-        <BackButton onPress={() => navigation.goBack()} />
-      </Header>
+      <Animated.View style={[headerStyle]}>
+        <Header>
+          <BackButton onPress={() => navigation.goBack()} />
+        </Header>
 
-      <CarImages>
-        <ImageSlider imagesUrl={car.photos} />
-      </CarImages>
+        <CarImages>
+          <ImageSlider imagesUrl={car.photos} />
+        </CarImages>
+      </Animated.View>
 
-      <Content>
+      <Animated.ScrollView
+        contentContainerStyle={{
+          paddingHorizontal: 24,
+          alignItems: 'center',
+        }}
+        showsVerticalScrollIndicator={false}
+        onScroll={scrollYHandler}
+      >
         <Details>
           <Description>
             <Brand>{car.brand}</Brand>
@@ -80,8 +111,15 @@ const CarDetails: React.FC = () => {
           ))}
         </Accessories>
 
-        <About>{car.about}</About>
-      </Content>
+        <About>
+          {car.about}
+          {car.about}
+          {car.about}
+          {car.about}
+          {car.about}
+          {car.about}
+        </About>
+      </Animated.ScrollView>
 
       <Footer>
         <Button
