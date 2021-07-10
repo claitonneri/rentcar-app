@@ -8,7 +8,9 @@ import Animated, {
   useAnimatedStyle,
   useSharedValue,
 } from 'react-native-reanimated';
+import { useTheme } from 'styled-components';
 
+import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 import Accessory from '../../components/Accessory';
 import Button from '../../components/Button';
 import BackButton from '../../components/BackButton';
@@ -41,6 +43,7 @@ interface CarDetailsProps {
 
 const CarDetails: React.FC = () => {
   const route = useRoute();
+  const { colors } = useTheme();
   const scrollY = useSharedValue(0);
   const navigation = useNavigation();
   const { car } = route.params as CarDetailsProps;
@@ -53,6 +56,12 @@ const CarDetails: React.FC = () => {
         [200, 70],
         Extrapolate.CLAMP,
       ),
+    };
+  });
+
+  const sliderCarsStyle = useAnimatedStyle(() => {
+    return {
+      opacity: interpolate(scrollY.value, [0, 150], [1, 0], Extrapolate.CLAMP),
     };
   });
 
@@ -71,23 +80,37 @@ const CarDetails: React.FC = () => {
         backgroundColor="transparent"
         translucent
       />
-      <Animated.View style={[headerStyle]}>
+      <Animated.View
+        style={[
+          headerStyle,
+          {
+            position: 'absolute',
+            overflow: 'hidden',
+            zIndex: 1,
+            backgroundColor: colors.background_secondary,
+          },
+        ]}
+      >
         <Header>
           <BackButton onPress={() => navigation.goBack()} />
         </Header>
 
-        <CarImages>
-          <ImageSlider imagesUrl={car.photos} />
-        </CarImages>
+        <Animated.View style={sliderCarsStyle}>
+          <CarImages>
+            <ImageSlider imagesUrl={car.photos} />
+          </CarImages>
+        </Animated.View>
       </Animated.View>
 
       <Animated.ScrollView
         contentContainerStyle={{
           paddingHorizontal: 24,
           alignItems: 'center',
+          paddingTop: getStatusBarHeight() + 160,
         }}
         showsVerticalScrollIndicator={false}
         onScroll={scrollYHandler}
+        scrollEventThrottle={16}
       >
         <Details>
           <Description>
