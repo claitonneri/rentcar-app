@@ -7,7 +7,7 @@ import { useTheme } from 'styled-components';
 import { useNavigation } from '@react-navigation/native';
 import BackButton from '../../components/BackButton';
 import CardCar from '../../components/CardCar';
-import Load from '../../components/Load';
+import Loading from '../../components/Loading';
 
 import CarDTO from '../../dtos/CarDTO';
 import api from '../../services/api';
@@ -72,7 +72,7 @@ const SchedulesList: React.FC = () => {
       </Header>
 
       {loading ? (
-        <Load />
+        <Loading />
       ) : (
         <Content>
           <Appointments>

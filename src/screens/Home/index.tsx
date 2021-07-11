@@ -15,7 +15,7 @@ import { useTheme } from 'styled-components';
 
 import Logo from '../../assets/logo.svg';
 
-import Load from '../../components/Load';
+import Loading from '../../components/Loading';
 import CardCar from '../../components/CardCar';
 
 import api from '../../services/api';
@@ -95,7 +95,7 @@ const Home: React.FC = () => {
       </Header>
 
       {loading ? (
-        <Load />
+        <Loading />
       ) : (
         <CarList
           data={cars}
