@@ -9,6 +9,7 @@ interface ButtonProps extends RectButtonProps {
   color?: string;
   enabled?: boolean;
   loading?: boolean;
+  light?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -16,6 +17,7 @@ const Button: React.FC<ButtonProps> = ({
   color,
   enabled = true,
   loading = false,
+  light = false,
   ...props
 }) => {
   return (
@@ -23,7 +25,7 @@ const Button: React.FC<ButtonProps> = ({
       {loading ? (
         <ActivityIndicator size={28} color="white" />
       ) : (
-        <Title>{title}</Title>
+        <Title light={light}>{title}</Title>
       )}
     </Container>
   );

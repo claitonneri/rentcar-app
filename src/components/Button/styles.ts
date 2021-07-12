@@ -8,6 +8,10 @@ interface ButtonProps extends RectButtonProps {
   loading?: boolean;
 }
 
+interface TitleProps {
+  light: boolean;
+}
+
 export const Container = styled(RectButton)<ButtonProps>`
   ${({ theme, color, enabled, loading }) => css`
     width: 100%;
@@ -24,10 +28,10 @@ export const Container = styled(RectButton)<ButtonProps>`
   `}
 `;
 
-export const Title = styled.Text`
-  ${({ theme }) => css`
+export const Title = styled.Text<TitleProps>`
+  ${({ theme, light }) => css`
     font-family: ${theme.fonts.primary_500};
     font-size: ${RFValue(15)}px;
-    color: ${theme.colors.background_secondary};
+    color: ${light ? theme.colors.title : theme.colors.background_secondary};
   `}
 `;
