@@ -16,13 +16,14 @@ export const Container = styled(RectButton)<ButtonProps>`
   ${({ theme, color, enabled, loading }) => css`
     width: 100%;
 
-    padding: 20px;
     justify-content: center;
     align-items: center;
 
-    background-color: ${color || theme.colors.main};
-
+    margin-bottom: 8px;
     border-radius: 4px;
+    padding: 20px;
+
+    background-color: ${color || theme.colors.main};
 
     opacity: ${enabled === false || loading === true ? 0.5 : 1};
   `}
